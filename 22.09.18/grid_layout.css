@@ -1,0 +1,31 @@
+body{width: 100vw; height: 100vh;
+    margin: 0;
+    font: bold 40px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 0.5fr;
+    grid-auto-rows: 60px minmax(400px, auto) 50px;
+    grid-template-areas: 
+    'head head head'
+    'menu main side'
+    'footer footer footer';
+}
+
+head{
+    grid-area: head;
+    background-color: antiquewhite;
+}
+
+main{
+    grid-area: main;
+    background-color: #ECEFB0;
+}
+aside{grid-area: side;
+    background-color:#ACD1A2;
+}
+footer{grid-area: footer;
+    background-color: #F9EFE3;
+}
+.menu{
+    grid-area: menu;
+    background-color: #F6916C;
+}

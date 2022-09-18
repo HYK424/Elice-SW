@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+    height: 100vh;
+    /* vh단위는 뷰포트의 %이다. 지금 킨 브라우저창에서 얼마만큼 비중을 차지할지 정한다. 반응형 웹 구성시 추천  */
+}
+
+/* 이번 레이아웃 컨셉은 레이아웃이 모두 flex로 이루어져 있는 것 */
+
+.head{height: 60px;
+    background-color: #ECEFB0;
+    display: flex;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+ 
+}
+section{display: flex;}
+main,.menu,aside{
+     height: calc(100vh - 120px); /*calc()함수를 이용한 사칙연산 결과를 본문 영역으로 */
+}
+main{
+    background-color: #B7BB7F;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    flex: 2 ;
+}
+.menu{
+    background-color: #858A50;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    flex:0.4;
+}
+aside{
+    background-color: #565B25;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    flex:0.3;
+}
+footer{
+    height: 60px;
+    background-color: #ECEFB0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}

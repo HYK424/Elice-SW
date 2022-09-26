@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+main{
+    padding: 20px;
+    font-family: 'Jua', sans-serif;
+}
+
+header {
+    font-family: 'Sunflower', sans-serif;
+    font: 20px bold;
+    background-color: grey;
+}
+
+header>nav>ul{
+    display: flex;
+    justify-content:baseline;
+    align-items: center;
+}
+
+ .btn{
+    list-style: none;
+    margin: 20px; 
+      
+    cursor: pointer;
+ }
+
+
+ .btn :hover{
+    transition: all 0.5s ease-in;
+    background-color: darkgray;
+    letter-spacing: 5px;
+}
+
+.img_room{
+    width: 640px;
+    height: 426px;
+    /* 이미지를 감싸는 공간을 준다. 그 후 공간의 크기를
+    이미지와 맞춘 뒤에 overflow: hidden 속성을 사용하여
+    넘치는 부분은 잘려도 보이지 않게 한다. */
+    overflow: hidden;
+}
+
+
+img:hover{
+    width: 640px;
+    height: 426px;
+    transition: all 0.5s;
+    transform: scale(1.2);
+}
+
+li>a{
+    text-decoration-line: none;
+    color: white;   
+}
+
+.name{
+    font-size: 50px;
+}
+
+.se1{
+    display: flex;
+    justify-content: baseline;
+}
+.se2{
+    display: flex;
+    justify-content: baseline;
+}
+
+h1{
+    margin: 24px;
+}
+h3{
+    margin: 30px 700px 10px 0px;
+    font-size: 32px;
+    text-align: left;
+}
+
+footer {
+    font-family: 'Sunflower', sans-serif;
+    font-size: 12px;
+    padding: 40px;
+    background-color: lightgray;
+  }
+
+
+

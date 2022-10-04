@@ -1,0 +1,35 @@
+setTimeout
+n밀리 초 후에 구동되는 동작을 지정한다. 비동기로 동작한다.
+
+ex)기본적으로 위에서부터 아래로 내려가면서 동작되지만 비동기 동작은 그렇지 않다.
+console.log('바로 실행')
+setTimeout(()=>{
+    console.log('3초후 실행');
+},3000);
+console.log('바로 실행2')
+
+
+Promise
+비동기 작업의 진행 상태, 순서를 표현한다.
+Promise 생성자 함수를 사용하여 성공, 실패 시의 resolve/ rejecte 값을 결정한다.
+이후 then()/catch()/finally() 메소드를 통해 동작이 성공 시/ 실패 시/ 성공, 실패 상관없이 모두 실행할 콜백 함수를 넣어준다.
+
+//1. Promise 생성자를 이용해 동작 성공/ 실패 시 어떻게, 어떤 값을 넣을 지 정한다
+let pms=function(n){
+let promise=new Promise((resolve, reject)=>{
+    if(n>10){
+        resolve(`10보다 크다`)
+    }else{
+        reject(`10보다 작다`)
+    }
+});
+return promise; //함수에서 반환되는 것은 Promise인스턴스
+}
+
+//2. then()을 통해 성공적으로 동작 시 resolve에 넣어놨던 값을 어떻게 처리할 지 명령한다.
+//  catch()는 반대로 실패 시 reject에 넣어놨던 값을 어떻게 처리할 지 명령한다.
+pms(11).then((a)=>console.log(a))
+        .catch((a)=>console.log(a));
+
+    pms(1).then((a)=>console.log(a))
+        .catch((a)=>console.log(a));

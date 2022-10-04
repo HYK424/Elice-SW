@@ -1,0 +1,16 @@
+let dog=true;
+let flower=false;
+let animal="";
+// if(dog) animal="dog는 동물";
+
+animal=dog&&"dog는 동물";
+console.log(animal); // &&에서는 모든 값을 확인해야 한다. 뒤에 오는 값이 결과로 반환된다.
+animal="dog는 동물"&&dog;
+console.log(animal);
+animal=flower&&dog; //&&에서 첫 값부터 false임을 확인하면 뒤를 볼 필요도 없다.
+console.log(animal);
+
+animal=dog||"dog는 동물"; //||에서는 첫 값이 true면 뒤를 볼 필요도 없다.
+console.log(animal);
+animal=flower||dog; //||에서 첫 값이 false면 뒤의 값은 무엇인지 확인하고 반환한다.
+console.log(animal);

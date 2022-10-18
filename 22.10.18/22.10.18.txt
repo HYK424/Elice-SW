@@ -1,0 +1,110 @@
+1. 의존성 추가하기
+다음과 같은 명령어를 통해 패키지를 내려받아 프로젝트에 의존성을 추가할 수 있다.
+내려받은 패키지는 package.json의 dependencies안에 추가된다.
+
+npm install [package-name]#축약형은 npm i
+
+아래와 같이 패키지의 버전을 특정해서 내려받을 수도 있다.
+
+npm install [package-name] @[version] 
+
+또한, 개발용 의존성만 따로 관리할 수도 있다. 개발용 의존성은 배포 전까지만 사용하는 의존성이다.
+ package.json의 devDependencies안에 추가된다.
+
+npm install [package-name] --save-dev
+
+2. 패키지를 받으면 생성되는 것들
+ 2-1. node_modules : 위에서와 같이 패키지들을 다운받으면 node_modules디렉토리가 생성되어 저장된다.
+하지만 의존성이 많아지면서 커지는 용량, 운영체제 별로 다르게 실행되는 코드 문제 때문에 배포 시 node_modules 업로드 하지 
+않는다.(깃허브에 통으로 올리지 않도록 유의한다)
+
+ 2-2. package-lock.json : 이 파일은 패키지를 내려받거나 package.json을 수정하면 자동으로 생성 및 업데이트 되는 파일이다. 
+일반적으로 package.json에는 프로젝트 정보가 저장되어 있다. 그러나 여기서 저장된 정보는 포괄적이다.
+예컨대, package.json에서 표기하는 패키지의 버전 정보는 version range 방식을 이용한다. version range는 포괄적으로
+버전을 명시하는 방식이므로 협업을 하게 된다면 서로 맞지 않는 버전을 이용해 충돌이 일어날 수 있다.
+반면에, package-lock.json은 구체적인 의존성 정보를 명시하고 있는 파일이다.
+ npm install은  package-lock.json을 참조해서 패키지를 내려받기 때문에 협업 시 package.json뿐만 아니라 package-lock.json을
+같이 업로드 하는 것이 권장된다.
+
+3. 패키지 삭제
+npm remove [package-name] 
+
+패키지를 삭제한다. dependencies, devDependencies 및 node_modules애서도 삭제된다.
+
+4. 스크립트 실행
+npm run [script-name]
+
+package.json의 script에 선언된 스크립트를 실행한다. 스크립트를 사용하는 이유는 script {..} 내에서 의존성 패키지를
+사용할 수 있기 때문이다.
+
+5. npx
+npm패키지를 설치하지 않고 바로 실행시킬 수 있게 해주는 도구. 프로젝트에 굳이 추가하지 않아도 될 패키지를
+사용할 때 이용한다. 또한, node.js의 특정 버전을 사용하여 js파일을 실행할 수도 있다.
+
+console.log("run"); //터미널에서 npx node@14 check_npx.js 로 실행
+
+______________________
+
+1. Express.js
+node.js의 웹 프레임워크 중 가장 유명한 프레임워크. 
+다양한 미들웨어를 통해 기능을 추가할 수 있으며 개발 규칙이 강제되어 있어 웹 구조를 파악하기도 쉽다.
+아래는 간단한 사용 예시. http모듈에서 사용했던 방법에 비하면 아주 간편해졌다.
+const express=require('express');
+const app=express(); //express.js의 기능을 담은 객체 생성.
+app.get('/', (req,res)=>{
+    res.send('hello express!');
+});
+app.get('/bye', (req,res)=>{
+    res.send('bye express!');
+});
+
+//app.listen으로 서버를 생성해준다
+app.listen(3000,()=>{
+    console.log('Server Run');
+})
+
+2. Express-generator
+일반적인 방법으로 express를 내려받아 사용하려면 상당부분을 처음부터 구조화시켜야 한다. 
+Express가 제공하는 프로젝터 생성기인 express-generator를 이용하면 기본구조를 자동으로 생성할 수 있다.
+생성된 프로젝트는 npm start로 실행한다.
+
+3. Express.js의 라우팅 방식
+express.js는 다양한 라우팅 방식을 제공. app라우팅 방식과 Express.Router를 통한 라우팅 방식이 대표적이다.
+ 3-1. app라우팅 : app객체에서 직접 get/post/put/delete를 사용하여 라우팅한다. 첫 번째 인자로 url경로를 지정하고
+마지막 인자로 라우팅 경로에 요청이 들어왔을 때 작동하는 함수를 설정한다. 이 함수를 Request Handler라고 하며 
+요청을 확인하고 응답을 보내는 역할을 한다.
+
+ *Request Handler는 request, response 객체를 반환한다. 각각 요청/ 응답을 처리하는 객체로 여러 기능을 제공한다.
+ 
+ 3-2. Expree.Router 라우팅: 위에서의 방법과 달리 라우팅을 그룹화하고 모듈로 보낼 수 있다.
+ 위의 방법처럼 get/post/put/delete 함수들을 사용할 수 있으며 인자로 next콜백 함수가 추가된다. 이렇게 추가한
+라우터 모듈은 use함수로 연결하여 사용한다.
+
+ const express=require('express');
+const router=express.Router();
+
+router.get('/', (req,res,next)=>{
+    res.send('hello by router');
+})
+
+module.exports=router;
+
+모듈화한 라우터를 사용할 때는
+
+const express=require('express');
+const router=require('./router');
+const app=express();
+
+app.use('/', router);
+
+// app.get('/', (req,res)=>{
+//     res.send('hello express!');
+// });
+
+// app.get('/bye', (req,res)=>{
+//     res.send('bye express!');
+// });
+
+app.listen(3000,()=>{
+    console.log('Server Run');
+})
